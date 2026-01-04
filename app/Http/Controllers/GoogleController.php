@@ -59,14 +59,7 @@ class GoogleController extends Controller
             // On connecte l'utilisateur
             Auth::login($user);
 
-            // On redirige vers le bon tableau de bord
-            // (Cette logique peut être améliorée plus tard avec un middleware)
-            return redirect()->intended('/dashboard');
-            // if ($user->role === 'medecin') {
-            //     return redirect()->intended('/medecin');
-            // }
-            //
-            // return redirect()->intended('/patient');
+            return to_route($user->role . ".dashboard");
         } catch (Exception $e) {
             return redirect()->route('register')->withErrors(['email' => 'Une erreur est survenue.']);
         }

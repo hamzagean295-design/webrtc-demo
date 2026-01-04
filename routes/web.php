@@ -11,7 +11,17 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('register')->middleware('auth');
+})->name('dashboard')->middleware('auth');
+
+
+
+Route::get('/medecin/dashboard', function () {
+    return view('medecin.dashboard');
+})->name('medecin.dashboard')->middleware('auth');
+
+Route::get('/patient/dashboard', function () {
+    return view('patient.dashboard');
+})->name('patient.dashboard')->middleware('auth');
 
 Route::get('/login', function () {
     return view('auth.login');
