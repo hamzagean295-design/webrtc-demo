@@ -8,6 +8,8 @@ npm run build
 
 [deploy]
 preDeployCommand = """
+php artisan db:wipe --force &&
+php artisan optimize:clear &&
 php artisan queue:table &&
 php artisan migrate:fresh --force &&
 npm ci && npm run build
