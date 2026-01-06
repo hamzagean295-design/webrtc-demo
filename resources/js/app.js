@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     notification.className = 'transform transition-all duration-300 ease-in-out';
                     
                     notification.innerHTML = `
-                        <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                        <div class="max-w-sm w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg pointer-events-auto ring-1 ring-black dark:ring-gray-700 ring-opacity-5 overflow-hidden">
                             <div class="p-4">
                                 <div class="flex items-start">
                                     <div class="flex-shrink-0">
@@ -27,23 +27,23 @@ document.addEventListener('DOMContentLoaded', () => {
                                         </svg>
                                     </div>
                                     <div class="ml-3 w-0 flex-1 pt-0.5">
-                                        <p class="text-sm font-medium text-gray-900">
+                                        <p class="text-sm font-medium text-gray-900 dark:text-gray-100">
                                             Invitation à une consultation
                                         </p>
-                                        <p class="mt-1 text-sm text-gray-600">
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                             ${event.message}
                                         </p>
                                         <div class="mt-3 flex space-x-4">
                                             <a href="${event.consultationUrl}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                                 Rejoindre
                                             </a>
-                                            <button onclick="document.getElementById('${notificationId}').remove()" class="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <button onclick="document.getElementById('${notificationId}').remove()" class="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 Ignorer
                                             </button>
                                         </div>
                                     </div>
                                     <div class="ml-4 flex-shrink-0 flex">
-                                        <button onclick="document.getElementById('${notificationId}').remove()" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <button onclick="document.getElementById('${notificationId}').remove()" class="bg-white dark:bg-gray-800 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             <span class="sr-only">Close</span>
                                             <!-- Heroicon name: solid/x -->
                                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
