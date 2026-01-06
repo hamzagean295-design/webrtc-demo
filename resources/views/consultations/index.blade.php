@@ -21,7 +21,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $consultation->medecin->name ?? 'N/A' }}</td>
                             <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">
                                 {{-- Affiche un résumé de la note si elle existe --}}
-                                {{ $consultation->aiNote->content['summary'] ?? 'Pas de note' }}
+                                {{ $consultation->aiNote->content ?? 'Pas de note' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                 {{-- Le modèle Consultation n'a pas de timestamps par défaut, j'utilise donc le champ 'date' s'il existe --}}
@@ -39,7 +39,7 @@
             </table>
         </div>
     </div>
-    
+
     {{-- La pagination sera automatiquement stylisée par Laravel si vous avez publié les vues de pagination --}}
     @if ($consultations->hasPages())
         <div class="mt-6">
