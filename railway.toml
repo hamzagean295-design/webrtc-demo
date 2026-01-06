@@ -15,6 +15,6 @@ php artisan migrate --force &&
 npm ci && npm run build
 """
 
-startCommand = "npx concurrently \"php artisan serve --host=0.0.0.0 --port=8000\" \"php artisan reverb:start --host=0.0.0.0 --port=80\" \"php artisan queue:work --tries=2\""
+startCommand = "npx concurrently \"php artisan serve --host=0.0.0.0 --port=8000\" \"php artisan reverb:start --host=0.0.0.0 --port=8080\" \"php artisan queue:work --tries=2\""
 
 healthcheckPath = ""
