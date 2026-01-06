@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\GoogleController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +18,13 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/medecin/dashboard', function () {
-    return view('medecin.dashboard');
+    $patients = User::where('role', 'patient')->get();
+    return view('medecin.dashboard', compact('patients'));
 })->name('medecin.dashboard')->middleware('auth');
 
 Route::get('/patient/dashboard', function () {
-    return view('patient.dashboard');
+    $medecins = User::where('role', 'medecin')->get();
+    return view('patient.dashboard', compact('medecins'));
 })->name('patient.dashboard')->middleware('auth');
 
 Route::get('/login', function () {
@@ -36,3 +40,11 @@ Route::get('/register', [GoogleController::class, 'register'])->name('register')
 Route::post('/register', [GoogleController::class, 'redirect'])->name('redirect');
 
 Route::get('/login/google/callback', [GoogleController::class, 'callback']);
+
+Route::get('/consultations/{patientId}/{medecinId}', [ConsultationController::class, 'room'])
+    ->name('consultation.room')
+    ->middleware('auth');
+
+Route::get('/consultations/{userId}', [ConsultationController::class, 'start'])->name('start.consultation');
+
+Route::post('/consultations/signal', [ConsultationController::class, 'signal'])->name('consultation.signal');

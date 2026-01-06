@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Consultation extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'patient_id',
         'medecin_id',
