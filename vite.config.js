@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 
+const env = loadEnv(mode, process.cwd(), '');
+
 export default defineConfig({
     plugins: [
         laravel({
@@ -16,6 +18,6 @@ export default defineConfig({
         },
     },
     define: {
-        'process.env': process.env,
+        'process.env.VITE_REVERB_APP_KEY': JSON.stringify(env.VITE_REVERB_APP_KEY),
     },
 });
