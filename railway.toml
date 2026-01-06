@@ -12,4 +12,4 @@ php artisan migrate --force &&
 npm ci && npm run build
 """
 
-startCommand = "php artisan serve --host=0.0.0.0 --port ${PORT}"
+startCommand = "npx concurrently \"php artisan serve --host=0.0.0.0 --port ${PORT}\" \"php artisan reverb:start\" "
