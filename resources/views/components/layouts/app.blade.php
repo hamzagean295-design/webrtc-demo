@@ -10,11 +10,7 @@
     </head>
     <body>
         <header>
-            @if(auth()->user()->role == 'patient')
-                @include('components.layouts.partials.patient-navigation')
-            @else
-                @include('components.layouts.partials.medecin-navigation')
-            @endif
+            @include('components.layouts.partials.shared-navigation')
         </header>
         <main>
             {{ $slot  }}

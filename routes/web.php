@@ -48,3 +48,7 @@ Route::get('/consultations/{patientId}/{medecinId}', [ConsultationController::cl
 Route::get('/consultations/{userId}', [ConsultationController::class, 'start'])->name('start.consultation');
 
 Route::post('/consultations/signal', [ConsultationController::class, 'signal'])->name('consultation.signal');
+
+Route::post('/consultations/{consultation}/upload-audio', [ConsultationController::class, 'uploadAudio'])->name('consultations.uploadAudio');
+
+Route::get('/consultations', [ConsultationController::class, 'index'])->name('consultation.index');
