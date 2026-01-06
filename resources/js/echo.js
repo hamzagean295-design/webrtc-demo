@@ -5,8 +5,8 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'reverb',
-    key: import.meta.env.VITE_REVERB_APP_KEY,
-    wsHost: import.meta.env.VITE_REVERB_HOST,
+    key: "yofxzqccuvvez3y4fshq",
+    wsHost: "lara-consult-production.up.railway.app",
     wsPort: 443, // Forcez 443 car Railway gère le SSL
     wssPort: 443,
     forceTLS: true,
