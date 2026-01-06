@@ -1,14 +1,11 @@
 import Echo from 'laravel-echo';
-
 import Pusher from 'pusher-js';
+
 window.Pusher = Pusher;
 
 window.Echo = new Echo({
-    broadcaster: 'reverb',
-    key: "yofxzqccuvvez3y4fshq",
-    wsHost: "lara-consult-production.up.railway.app",
-    wsPort: 443, // Forcez 443 car Railway gère le SSL
-    wssPort: 443,
-    forceTLS: false,
-    enabledTransports: ['ws'],
+    broadcaster: 'pusher',
+    key: "19bce95f00004fbdb5c3",
+    cluster: "eu", // Remplacez par votre cluster Pusher
+    forceTLS: true
 });
