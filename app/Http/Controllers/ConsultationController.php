@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\ConsultationStatus;
 use App\Events\DemarrerConsultationEvent;
 use App\Events\WebRTCSignal;
+use App\Models\AiNote;
 use Illuminate\Http\Request;
 use App\Models\Consultation;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,12 @@ use Prism\Prism\ValueObjects\Media\Audio;
 
 class ConsultationController extends Controller
 {
+    public function showNote(AiNote $note)
+    {
+        // TODO: Add authorization to ensure the current user can view this note.
+        return view('consultations.note', compact('note'));
+    }
+
     public function index()
     {
         $consultations = Consultation::with('aiNote')

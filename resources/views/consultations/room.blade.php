@@ -5,7 +5,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <!-- Local Video -->
         <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden relative">
-            <video id="localVideo" controls autoplay muted playsinline class="w-full h-full object-cover"></video>
+            <video id="localVideo" autoplay muted playsinline class="w-full h-full object-cover"></video>
             <div class="absolute top-2 left-2 bg-black bg-opacity-50 text-white text-sm px-2 py-1 rounded">
                 Vous: {{ $currentUser->name }}
             </div>

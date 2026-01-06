@@ -11,6 +11,7 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Médecin</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Note IA (Résumé)</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Date</th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -20,17 +21,21 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $consultation->patient->name ?? 'N/A' }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $consultation->medecin->name ?? 'N/A' }}</td>
                             <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">
-                                {{-- Affiche un résumé de la note si elle existe --}}
-                                {{ $consultation->aiNote->content ?? 'Pas de note' }}
+                                {{-- Utilisation de Str::limconsultations/init pour un résumé propre --}}
+                                {{ Str::limit($consultation->aiNote->content ?? '', 50, '...') ?: 'Pas de note' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                {{-- Le modèle Consultation n'a pas de timestamps par défaut, j'utilise donc le champ 'date' s'il existe --}}
-                                {{ $consultation->date ? $consultation->date->format('d/m/Y H:i') : 'Date N/A' }}
+                                {{ $consultation->scheduled_at ? $consultation->scheduled_at->format('d/m/Y H:i') : 'Date N/A' }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                @if($consultation->aiNote)
+                                    <a href="{{ route('notes.show', $consultation->aiNote) }}" class="text-blue-600 dark:text-blue-400 hover:underline">Voir</a>
+                                @endif
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                            <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
                                 Aucune consultation trouvée.
                             </td>
                         </tr>
@@ -40,7 +45,6 @@
         </div>
     </div>
 
-    {{-- La pagination sera automatiquement stylisée par Laravel si vous avez publié les vues de pagination --}}
     @if ($consultations->hasPages())
         <div class="mt-6">
             {{ $consultations->links() }}
