@@ -20,7 +20,7 @@ class ConsultationController extends Controller
         $consultations = Consultation::with('aiNote')
             ->where('patient_id', auth()->id())
             ->orWhere('medecin_id', auth()->id())
-            ->get();
+            ->paginate(40);
         return view('consultations.index', compact('consultations'));
     }
 
@@ -77,7 +77,7 @@ class ConsultationController extends Controller
                 'status' => ConsultationStatus::ONGOING,
             ],
             [
-                'date' => now()
+                'scheduled_at' => now()
             ]
         );
 

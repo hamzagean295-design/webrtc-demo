@@ -8,15 +8,27 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>LaraConsult {{ Auth::check() ? auth()->user()->role : '' }} </title>
     </head>
-    <body>
-        <header>
-            @include('components.layouts.partials.shared-navigation')
-        </header>
-        <main>
-            {{ $slot  }}
-        </main>
-        <div id="container">
+    <body class="font-sans antialiased bg-gray-100">
+    <header class="bg-white shadow-md">
+        @include('components.layouts.partials.shared-navigation')
+    </header>
 
+    <!-- Page Content -->
+    <main>
+        <div class="py-8">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900">
+                        {{ $slot }}
+                    </div>
+                </div>
+            </div>
         </div>
-    </body>
+    </main>
+
+    <!-- Notification Container -->
+    <div id="container" class="fixed top-5 right-5 z-50 w-full max-w-sm space-y-4">
+        <!-- Notifications will be dynamically injected here -->
+    </div>
+</body>
 </html>

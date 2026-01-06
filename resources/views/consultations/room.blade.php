@@ -1,26 +1,41 @@
 <x-layouts.app>
-    <h1>Room de consultation #{{ $consultation->id }}</h1>
+    <h1 class="text-2xl font-bold mb-4">Salle de consultation #{{ $consultation->id }}</h1>
 
-    <div style="display:flex; gap:20px; background-color: #f0f0f0; padding: 1rem;">
-        <div>
-            <p>Vous: {{ $currentUser->name }}</p>
-            <video id="localVideo" controls autoplay muted playsinline style="border: 2px solid blue; width: 320px;"></video>
+    <!-- Video Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Local Video -->
+        <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden relative">
+            <video id="localVideo" autoplay muted playsinline class="w-full h-full object-cover"></video>
+            <div class="absolute top-2 left-2 bg-black bg-opacity-50 text-white text-sm px-2 py-1 rounded">
+                Vous: {{ $currentUser->name }}
+            </div>
         </div>
-        <div>
-            <p>Pair distant</p>
-            <video id="remoteVideo" autoplay playsinline style="border: 2px solid grey; width: 320px;"></video>
+        <!-- Remote Video -->
+        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden relative">
+            <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover"></video>
+            <div class="absolute top-2 left-2 bg-black bg-opacity-50 text-white text-sm px-2 py-1 rounded">
+                Participant distant
+            </div>
         </div>
     </div>
 
-    <button id="startCallBtn">Démarrer Appel</button>
-    <button id="stopCallBtn">Quitter Appel</button>
-    <br>
-    <button id="startRecordingBtn">Démarrer Enregistrement</button>
-    <button id="stopRecordingBtn" disabled>Terminer Enregistrement</button>
-    <p id="status"><strong>Status:</strong> En attente</p>
-    <p id="recordingStatus"></p>
+    <!-- Controls -->
+    <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+        <div class="flex flex-wrap items-center justify-center gap-4">
+            <button id="startCallBtn" class="px-4 py-2 font-semibold text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 disabled:opacity-50 disabled:cursor-not-allowed">Démarrer Appel</button>
+            <button id="stopCallBtn" class="px-4 py-2 font-semibold text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 disabled:opacity-50 disabled:cursor-not-allowed">Quitter Appel</button>
+            <span class="h-8 border-l border-gray-300 mx-2"></span>
+            <button id="startRecordingBtn" class="px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 disabled:opacity-50 disabled:cursor-not-allowed">Démarrer Enregistrement</button>
+            <button id="stopRecordingBtn" disabled class="px-4 py-2 font-semibold text-white bg-yellow-500 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-75 disabled:opacity-50 disabled:cursor-not-allowed">Terminer Enregistrement</button>
+        </div>
+        <div class="text-center mt-4">
+            <p id="status" class="text-sm text-gray-700 font-medium"><strong>Status:</strong> En attente</p>
+            <p id="recordingStatus" class="text-sm text-blue-700 font-medium h-5"></p>
+        </div>
+    </div>
 
 <script>
+// Le script JS reste le même, il est déjà bien structuré.
 /* ================= CONFIG ================= */
 const consultationId = {{ $consultation->id }};
 const signalUrl = "{{ route('consultation.signal') }}";
