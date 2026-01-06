@@ -7,8 +7,8 @@ window.Echo = new Echo({
     broadcaster: 'reverb',
     key: "yofxzqccuvvez3y4fshq",
     wsHost: "lara-consult-production.up.railway.app",
-    wsPort: 8080, // Forcez 443 car Railway gère le SSL
-    wssPort: 8080,
+    wsPort: 80, // Forcez 443 car Railway gère le SSL
+    wssPort: 80,
     forceTLS: false,
     enabledTransports: ['ws'],
 });
