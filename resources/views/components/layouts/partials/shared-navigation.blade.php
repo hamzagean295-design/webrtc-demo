@@ -8,12 +8,13 @@
         <!-- Desktop Links -->
         <div class="hidden md:flex items-center space-x-4">
             <a href="{{ auth()->user()->role === 'medecin' ? route('medecin.dashboard') : route('patient.dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-            
+
             @if(auth()->user()->role === 'medecin')
                 <a href="/consultations" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Historique</a>
             @endif
 
             <form action="{{ route('logout') }}" method="POST">
+                @method('DELETE')
                 @csrf
                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium">
                     Déconnexion
@@ -32,7 +33,7 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden pb-4">
         <a href="{{ auth()->user()->role === 'medecin' ? route('medecin.dashboard') : route('patient.dashboard') }}" class="block text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 py-2 px-4 rounded">Dashboard</a>
-        
+
         @if(auth()->user()->role === 'medecin')
             <a href="/consultations" class="block text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 py-2 px-4 rounded mt-1">Historique</a>
         @endif
@@ -40,6 +41,7 @@
         <div class="mt-2 px-4">
             <form action="{{ route('logout') }}" method="POST" class="w-full">
                 @csrf
+                @method('DELETE')
                 <button type="submit" class="w-full text-left bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
                     Déconnexion
                 </button>
