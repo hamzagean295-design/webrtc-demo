@@ -54,4 +54,4 @@ Route::get('/notes/{note}', [ConsultationController::class, 'showNote'])->name('
 
 Route::post('/consultations/{consultation}/upload-audio', [ConsultationController::class, 'uploadAudio'])->name('consultations.uploadAudio');
 
-Route::get('/consultations', [ConsultationController::class, 'index'])->name('consultation.index');
+Route::get('/consultations', [ConsultationController::class, 'index'])->name('consultation.index')->middleware('auth');
